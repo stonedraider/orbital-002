@@ -1,12 +1,15 @@
 import * as types from '../actions/action-types';
 
-export default (state = [], action) => {
+const initialState = {themeId:'white'};
+
+export const SwitchThemeReducer = (state = initialState, action) => {
+    console.log(action.themeId);
     switch (action.type) {
-        case types.SWITCH_THEME_TO_BLACK:
-            return [...state, Object.assign({}, action.theme)];
-        case types.SWITCH_THEME_TO_WHITE:
-            return [...state, Object.assign({}, action.theme)];
+        case types.SWITCH_THEME:
+            return action.themeId;       
         default:
             return state;
     }
 };
+
+export default SwitchThemeReducer;
