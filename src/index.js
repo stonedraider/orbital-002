@@ -10,11 +10,23 @@ import SwitchThemeReducer from './reducers/switch-theme-reducer.js';
 const store = configureStore();
 
 if (module.hot) {
-  module.hot.accept(
-      './reducers',
-      () => store.replaceReducer(SwitchThemeReducer)
-    );
+  module.hot.accept();
 }
+
+if (module.hot) {
+  module.hot.accept('./reducers/'), () => {
+    const nextRootReducer = require('./reducers/index').default;
+    store.replaceReducer(nextRootReducer);
+  }
+  // module.hot.accept();
+}
+
+// if(module.hot) {
+// 	module.hot.accept("./components/App", () => {
+// 		const NextApp = require('./components/App').default;
+// 		ReactDOM.render(<NextApp />, document.getElementById('a'));
+// 	});
+// }
 
 ReactDOM.render(
   <Provider store={store}>

@@ -2,14 +2,14 @@ import * as types from '../actions/action-types';
 
 const initialState = {themeId:'white'};
 
-export const SwitchThemeReducer = (state = initialState, action) => {
-    // console.log(action.themeId);
+export const FetchApodReducer = (state = initialState, action) => {
+    // console.log(action.date);
     switch (action.type) {
-        case types.SWITCH_THEME:
+        case types.FETCH_APOD:
             return action.themeId;       
         default:
             return state;
     }
 };
 
-export default SwitchThemeReducer;
+export default FetchApodReducer;

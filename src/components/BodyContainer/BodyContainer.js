@@ -22,8 +22,8 @@ class BodyContainer extends Component {
         
         const { themeId } = this.props;
 
-        console.log("state: " + this.state);
-        console.log("props: " + this.props);
+        // console.log(this.state);
+        // console.log(this.props);
 
         return (
             <Body switchTheme={this.props.actions.switchTheme} themeId={themeId}/>
