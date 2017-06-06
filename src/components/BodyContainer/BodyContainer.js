@@ -7,6 +7,7 @@ import Body from '../Body';
 import Button from '../Button'
 
 import * as SwitchThemeActions from '../../actions/switch-theme-actions';
+import * as FetchApodActions from '../../actions/fetch-apod-actions';
 import * as constants from '../../constants/constants.js';
 
 class BodyContainer extends Component {
@@ -19,31 +20,38 @@ class BodyContainer extends Component {
 
     }
     render() {
-        
-        const { themeId } = this.props;
+
+        const { theme } = this.props;
 
         // console.log(this.state);
         // console.log(this.props);
 
         return (
-            <Body switchTheme={this.props.actions.switchTheme} themeId={themeId}/>
+            <Body
+                theme={theme}
+                switchTheme={this.props.switchThemeActions.switchTheme}
+                fetchApod={this.props.fetchApodActions.fetchApod}
+            />
         );
     }
 }
 
 BodyContainer.propTypes = {
-    actions: PropTypes.object.isRequired
+    switchThemeActions: PropTypes.object.isRequired,
+    fetchApodActions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, props) {
     return {
-        themeId: state.SwitchThemeReducer.themeId
+        theme: state.SwitchThemeReducer.theme,
+        date: state.FetchApodReducer.date
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(SwitchThemeActions, dispatch)
+        switchThemeActions: bindActionCreators(SwitchThemeActions, dispatch),
+        fetchApodActions: bindActionCreators(FetchApodActions, dispatch)
     }
 }
 

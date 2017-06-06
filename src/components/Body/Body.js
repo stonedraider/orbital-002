@@ -16,7 +16,7 @@ const VALUE_API_KEY = 'Yxi6hdd2U4X9odDq25r8ppGeeKz0I8zkFV8GiQU0';
 const VALUE_DATE = '2017-01-01';
 const VALUE_HD = 'false';
 
-const DECREMENT_INIT_DAY = 100;
+const DAYS = 3;
 const FETCH_SIZE = 1;
 
 class Body extends Component {
@@ -29,7 +29,7 @@ class Body extends Component {
         this.state = {
             isLoading: false,
             results: null,
-            currentDate: new Date(date.setDate(date.getDate() - DECREMENT_INIT_DAY))
+            currentDate: new Date(date.setDate(date.getDate() - DAYS))
         }
 
         this.onSwitchStyle = this.onSwitchStyle.bind(this);
@@ -37,7 +37,7 @@ class Body extends Component {
     render() {
         console.log(this.state);
 
-        const themeId = constants.THEME_ID;
+        const theme = constants.THEME_ID;
 
         const styles = reactCSS({
             'black': {
@@ -51,43 +51,42 @@ class Body extends Component {
                 },
             },
         }, {
-                'black': this.props.themeId === themeId.BLACK,
-                'white': this.props.themeId === themeId.WHITE,
+                'black': this.props.theme === theme.BLACK,
+                'white': this.props.theme === theme.WHITE,
             });
 
         return (
             <div className="Body" style={styles.Body}>
                 <Button
                     className="btn btn-default active"
-                    onClick={() => this.onSwitchStyle(themeId.BLACK)}
+                    onClick={() => this.onSwitchStyle(theme.BLACK)}
                 >
                     Black Theme
                 </Button>
                 <Button
                     className="btn btn-default active"
-                    onClick={() => this.onSwitchStyle(themeId.WHITE)}
+                    onClick={() => this.onSwitchStyle(theme.WHITE)}
                 >
                     White Theme
                 </Button>
-                <Button
+                {/*<Button
                     className="btn btn-default active"
                     onClick={() => this.fetchNextData()}
                 >
                     Load APOD
-                </Button>
+                </Button>*/}
                 <hr></hr>
                 <div>
                     <div>
-                        Hello
                     </div>
                 </div>
             </div >
         );
     }
 
-    onSwitchStyle(themeId) {
+    onSwitchStyle(theme) {
         this.props.switchTheme({
-            themeId: themeId
+            theme: theme
         });
     }
 

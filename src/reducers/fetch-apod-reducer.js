@@ -1,12 +1,12 @@
 import * as types from '../actions/action-types';
 
-const initialState = {themeId:'white'};
+const initialState = {date:'2017-01-01'};
 
 export const FetchApodReducer = (state = initialState, action) => {
     // console.log(action.date);
     switch (action.type) {
         case types.FETCH_APOD:
-            return action.themeId;       
+            return action.theme;       
         default:
             return state;
     }
